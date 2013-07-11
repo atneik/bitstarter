@@ -7,9 +7,9 @@ app.get('/', function(request, response) {
 	var len=256;
 	var ctr = 0;
 	do{
-		len  = buff.write(fs.readFileSync('index.html','utf-8').slice(ctr,ctr+len));
+		len  = buff.write(fs.readFileSync('index.html','utf-8').slice(ctr,ctr+len),'utf-8');
 		ctr = ctr + len;
-		response.send(buff.toString('utf-8', 0, len));
+		response.send(buff.toString());
 		buff.fill(' ');
 	}while(len!=0);
 });
