@@ -4,12 +4,13 @@ var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
   	var buff = new Buffer(256);
-	var len;
+	var len=256;
 	var ctr = 0;
 	do{
-		len  = buff.write(fs.readFileSync('index.html','utf-8'),ctr,256);
+		len  = buff.write(fs.readFileSync('index.html','utf-8').slice(ctr,ctr+len));
 		ctr = ctr + len;
 		response.send(buff.toString('utf-8', 0, len));
+		buff.fill(' ');
 	}while(len!=0);
 });
 
