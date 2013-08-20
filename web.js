@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var util = require('util');
-var app = express.createServer(express.logger());
+var app = express();
 
 app.get('/', function(request, response) {
   	var stats = fs.statSync('index.html');
